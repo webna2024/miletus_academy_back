@@ -84,14 +84,18 @@ WSGI_APPLICATION = 'miletus.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'miletus_db',
+        'USER': 'webna',
+        'PASSWORD': 'webna@2024',
+        'HOST': 'db',
+        'PORT': 5432,
     }
-    # 'default': dj_database_url.config(
-    #     default=os.environ.get('DATABASE_URL', 'postgres://miletus_user:miletus_password@db:5432/miletus_db'),
-    #     conn_max_age=600
-    # )
 }
 
 REST_FRAMEWORK = {
