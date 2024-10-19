@@ -1,0 +1,8 @@
+asgiref
+dj-database-url
+Django
+djangorestframework
+psycopg2-binary
+sqlparse
+typing_extensions
+tzdata
