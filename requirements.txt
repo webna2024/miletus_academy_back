@@ -1,8 +1,8 @@
 asgiref
-dj-database-url
 Django
+django-cors-headers
 djangorestframework
 psycopg2-binary
+python-decouple
 sqlparse
-typing_extensions
 tzdata
