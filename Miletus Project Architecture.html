@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mermaid Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({startOnLoad:true});
+    </script>
+</head>
+<body>
+    <pre class="mermaid">
+erDiagram
+    User ||--o{ Comment : writes
+    User ||--|| Instructor : extends
+    User ||--|| Student : extends
+    Instructor ||--o{ Course : teaches
+    Student ||--o{ Enrollment : enrolls
+    Course ||--|{ Lesson : contains
+    Course ||--o{ Enrollment : has
+    Lesson ||--o{ Comment : receives
+
+    User {
+        int id PK
+        string email
+        string username
+        string password
+        string first_name
+        string last_name
+        datetime created_at
+    }
+
+    Instructor {
+        int user_id FK
+        text bio
+        string expertise
+        string qualification
+        string profile_picture
+        decimal rating
+    }
+
+    Student {
+        int user_id FK
+        string education_level
+        string interests
+        string profile_picture
+        datetime last_login
+    }
+
+    Course {
+        int id PK
+        string title
+        text description
+        decimal price
+        int instructor_id FK
+        string level
+        string category
+        datetime created_at
+        boolean is_active
+    }
+
+    Lesson {
+        int id PK
+        string title
+        text content
+        int course_id FK
+        int week_number
+        int order
+        datetime created_at
+        string content_type
+    }
+
+    Enrollment {
+        int id PK
+        int student_id FK
+        int course_id FK
+        datetime enrolled_at
+        string status
+        decimal progress
+        datetime last_accessed
+    }
+
+    Comment {
+        int id PK
+        text content
+        int user_id FK
+        int lesson_id FK
+        datetime created_at
+        boolean is_approved
+    }
+    </pre>
+</body>
+</html>
