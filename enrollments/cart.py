@@ -8,5 +8,13 @@ class cart:
         self.cart = cart
         self.session['cart'] = {}
 
-    
+
+    def add(self , product , num=1):
+        product_id = str(product.id)
+        if product_id not in self.cart :
+            self.cart['product_id'] = {'num':num}
+        else:
+            self.cart['product_id']['num']+=num
+            self.save()
+            
 
