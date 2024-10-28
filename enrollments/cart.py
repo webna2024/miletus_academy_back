@@ -16,5 +16,7 @@ class cart:
         else:
             self.cart['product_id']['num']+=num
             self.save()
-            
+
+    def save(self):
+        self.session.modified = True
 
