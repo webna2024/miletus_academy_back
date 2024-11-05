@@ -45,5 +45,9 @@ class cart:
 
 
 
+    def __len__(self): # متدی برای دریافت تعداد محصولات سبد خرید
+        return len(self.cart.keys()) 
+
+
 
 
