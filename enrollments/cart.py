@@ -1,4 +1,4 @@
-from courses.models import Courses
+from courses.models import Course
 
 
 class cart:
@@ -34,7 +34,7 @@ class cart:
 
     def __iter__(self): # متدی برای حلقه زدن روی سبد خرید کاربر
         product_ids = self.cart.keys() # دریافت تمام کلید های دیکشنری سبد خرید 
-        product = Courses.objects.filter(id__in = product_ids)  # دریافت اطلاعات دوره های داخل سبد خرید از مدل دوره ها
+        product = Course.objects.filter(id__in = product_ids)  # دریافت اطلاعات دوره های داخل سبد خرید از مدل دوره ها
         cart = self.cart.copy() # کپی گرفتن از سبد خرید تا اطلاعاتی که از دیتابیس به دست میآوریم را در کنار سبد خرید کپی شده 
                                 # نشان دهیم نه در سبد خرید اصلی تا در هر بار فراخوانی شی ، اطلاعات محصولات قبلی دیگر در سشن قرار نگیرند
         for p in product:
@@ -44,9 +44,17 @@ class cart:
             yield prod # ساخت یک جنریتور که هربار روی سبد خرید حلقه زدیم  ، تنها یک محصول را برگرداند ، بار دیگر محصول دیگر تا آخرین محصول
 
 
-
     def __len__(self): # متدی برای دریافت تعداد محصولات سبد خرید
         return len(self.cart.keys()) 
+    
+    def delete(self): # متدی برای حذف کامل سبد خرید
+        del self.session['cart']
+        self.save()
+
+    def get_total_price(self): # متدی برای دریافت قیمت کل سبد خرید
+        product_ids = self.cart.keys() 
+        product = Course.objects.filter(id__in = product_ids)
+        return sum(p.price for p in product)
 
 
 
